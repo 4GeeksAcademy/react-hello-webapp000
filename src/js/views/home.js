@@ -1,15 +1,28 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useContext, useEffect } from "react";
 import "../../styles/home.css";
+import { Context } from "../store/appContext";
+import Card from "../component/card.jsx";
 
-export const Home = () => (
+export const Home = () => {
+	const { store, actions } = useContext(Context);
+	
+	useEffect(() => {
+		actions.getContacts(); 
+	}, []);
+	
+	
+	
+	return (
 	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
+		{store.contacts.map((item, index) => {
+			return (
+				<Card 
+				nombre={item.full_name}
+				email={item.email}
+				phoneNumber={item.phone}
+				address={item.address} 
+				key={index}/>
+			);
+		})};
 	</div>
-);
+)};

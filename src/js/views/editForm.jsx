@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
-export const Demo = () => {
+export const EditForm = () => {
 	const { store, actions } = useContext(Context);
 	const [fullName, setFullName] = useState("")
 	const [emailAdress, setEmailAdress] = useState("")
@@ -14,7 +14,7 @@ export const Demo = () => {
 
 	const handleSumbit = e => {
 		e.preventDefault();
-		actions.createContact(fullName, emailAdress, streetAddress, phoneNumber)
+		actions.editContact(fullName, emailAdress, streetAddress, phoneNumber)
 		setFullName("");
 		setEmailAdress("");
 		setPhoneNumber("");
