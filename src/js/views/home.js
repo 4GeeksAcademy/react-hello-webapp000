@@ -8,7 +8,7 @@ export const Home = () => {
 	
 	useEffect(() => {
 		actions.getContacts(); 
-	}, []);
+	}, [store.contacts]);
 	
 	
 	
@@ -17,12 +17,13 @@ export const Home = () => {
 		{store.contacts.map((item, index) => {
 			return (
 				<Card 
-				nombre={item.full_name}
-				email={item.email}
-				phoneNumber={item.phone}
-				address={item.address} 
-				key={index}/>
+					nombre={item.full_name}
+					email={item.email}
+					phoneNumber={item.phone}
+					address={item.address} 
+					id={item.id}
+					key={index}/>
 			);
-		})};
+		})}
 	</div>
 )};

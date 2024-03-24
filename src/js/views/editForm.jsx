@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams} from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
@@ -7,14 +7,25 @@ import "../../styles/demo.css";
 
 export const EditForm = () => {
 	const { store, actions } = useContext(Context);
-	const [fullName, setFullName] = useState("")
-	const [emailAdress, setEmailAdress] = useState("")
-	const [phoneNumber, setPhoneNumber] = useState("")
-	const [streetAddress, setStreetAddress] = useState("")
+	const [fullName, setFullName] = useState("Nombre");
+	const [emailAdress, setEmailAdress] = useState("Email");
+	const [phoneNumber, setPhoneNumber] = useState("Telefono");
+	const [streetAddress, setStreetAddress] = useState("Calle");
+	const { id } = useParams();
+	
+
+	useEffect(() =>{
+		actions.getSingleContact(id);
+		setFullName(store.contact.fullName);
+		setEmailAdress(store.contact.emailAdress);
+		setPhoneNumber(store.contact.phoneNumber);
+		setStreetAddress(store.contact.streetAddress);
+	}, []);
+
 
 	const handleSumbit = e => {
 		e.preventDefault();
-		actions.editContact(fullName, emailAdress, streetAddress, phoneNumber)
+		actions.editContact(fullName, emailAdress, streetAddress, phoneNumber, id);
 		setFullName("");
 		setEmailAdress("");
 		setPhoneNumber("");
@@ -72,8 +83,6 @@ export const EditForm = () => {
   
   			<button type="submit" className="btn btn-primary">Submit</button>
 		</form>
-
-		{/* <button onClick={() => console.log(fullName)}>Mostrar datos</button> */}
 			<Link to="/">
 				<button>Back home</button>
 			</Link>

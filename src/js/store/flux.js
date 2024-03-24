@@ -2,10 +2,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contacts: [],
+			contact: {},
 		},
 		actions: {
 			createContact: (fullName, emailAdress, streetAddress, phoneNumber) => {
-				fetch('https://playground.4geeks.com/apis/fake/contact/'), {
+				fetch('https://playground.4geeks.com/apis/fake/contact/', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -17,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"address":streetAddress,
 							"phone":phoneNumber
 						})
-					}
+					})
 					.then(response => response.json())
 					.then (data => console.log(data))
 					.catch(error => console.log('Error:' , error));
@@ -32,8 +33,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				},
 
+				getSingleContact: (id) => {
+					fetch (`https://playground.4geeks.com/apis/fake/contact/${id}`)
+					.then(response => response.json())
+					.then (data => setStore ({ contact: data }))
+					.catch(error => console.log('Error:' , error));
+
+				},
+
 				editContact: (fullName, emailAdress, streetAddress, phoneNumber, id) => {
-					fetch (`https://playground.4geeks.com/apis/fake/contact/${id}`), {
+					fetch (`https://playground.4geeks.com/apis/fake/contact/${id}`, {
 						method: 'PUT',
 						headers: {
 							'Content-Type': 'application/json'
@@ -45,13 +54,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 								"address":streetAddress,
 								"phone":phoneNumber
 							})
-						}
+						})
 						.then(response => response.json())
 						.then (data => console.log(data))
 						.catch(error => console.log('Error:' , error));
 				},
 
-				deleteContact:() => {
+				deleteContact:(id) => {
+					fetch (`https://playground.4geeks.com/apis/fake/contact/${id}`, {
+						method: 'DELETE',
+					})
+						.then(response => response.json())
+						.then (data => console.log(data))
+						.catch(error => console.log('Error:' , error));
 
 				}
 			}

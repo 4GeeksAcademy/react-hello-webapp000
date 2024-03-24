@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 
 const Card = (props) => {
-
-
+  const { store, actions } = useContext(Context);
+  const handleDelete = () => {
+      actions.deleteContact(props.id);
+}
 
 return(
     <div className="card">
@@ -13,9 +16,10 @@ return(
    <p>{props.email}</p>
    <p>{props.phoneNumber}</p>
    <p>{props.address}</p>
-   <Link to="/editForm">
+   <Link to={`/editForm/${props.id}`}>
 				<button>Editar</button>
-		</Link>
+	 </Link>
+   <button onClick={()=> {handleDelete()}}>Eliminar</button>
   </div>
 </div>
 )}
