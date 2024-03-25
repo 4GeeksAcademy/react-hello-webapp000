@@ -8,18 +8,18 @@ import "../../styles/demo.css";
 export const EditForm = () => {
 	const { store, actions } = useContext(Context);
 	const [fullName, setFullName] = useState("Nombre");
-	const [emailAdress, setEmailAdress] = useState("Email");
-	const [phoneNumber, setPhoneNumber] = useState("Telefono");
-	const [streetAddress, setStreetAddress] = useState("Calle");
+	const [emailAdress, setEmailAdress] = useState("email");
+	const [phoneNumber, setPhoneNumber] = useState("numero");
+	const [streetAddress, setStreetAddress] = useState("calle");
 	const { id } = useParams();
 	
 
 	useEffect(() =>{
 		actions.getSingleContact(id);
-		setFullName(store.contact.fullName);
-		setEmailAdress(store.contact.emailAdress);
-		setPhoneNumber(store.contact.phoneNumber);
-		setStreetAddress(store.contact.streetAddress);
+		setFullName(store.contact.full_name);
+		setEmailAdress(store.contact.email);
+		setPhoneNumber(store.contact.phone);
+		setStreetAddress(store.contact.address);
 	}, []);
 
 
@@ -83,6 +83,7 @@ export const EditForm = () => {
   
   			<button type="submit" className="btn btn-primary">Submit</button>
 		</form>
+
 			<Link to="/">
 				<button>Back home</button>
 			</Link>

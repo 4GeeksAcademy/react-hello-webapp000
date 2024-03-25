@@ -8,7 +8,7 @@ export const Home = () => {
 	
 	useEffect(() => {
 		actions.getContacts(); 
-	}, [store.contacts]);
+	}, [] );
 	
 	
 	
