@@ -10,14 +10,17 @@ export const Home = () => {
 		actions.getContacts(); 
 	}, [] );
 	
+	/* useEffect(() => {
+		console.log(store.contacts); 
+	}, [store.contacts] ); */
 	
 	
 	return (
 	<div className="text-center mt-5">
-		{store.contacts.map((item, index) => {
+		{store.contacts?.map((item, index) => {
 			return (
 				<Card 
-					nombre={item.full_name}
+					nombre={item.name}
 					email={item.email}
 					phoneNumber={item.phone}
 					address={item.address} 

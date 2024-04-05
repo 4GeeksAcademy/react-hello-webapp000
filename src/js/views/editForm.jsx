@@ -19,7 +19,7 @@ export const EditForm = () => {
 	}, []);
 
 	useEffect(() =>{
-		setFullName(store.contact.full_name);
+		setFullName(store.contact.name);
 		setEmailAdress(store.contact.email);
 		setPhoneNumber(store.contact.phone);
 		setStreetAddress(store.contact.address);
@@ -58,7 +58,7 @@ export const EditForm = () => {
 			  id="exampleInputEmail"
 			  placeholder="Your email"
 			  value={emailAdress}
-			  onChange={(e) => setEmailAddress(e.target.value)}
+			  onChange={(e) => setEmailAdress(e.target.value)}
 			/>
 		  </div>
 		  <div className="mb-3">

@@ -46,7 +46,7 @@ export const Demo = () => {
             id="exampleInputEmail"
             placeholder="Your email"
             value={emailAdress}
-            onChange={(e) => setEmailAddress(e.target.value)}
+            onChange={(e) => setEmailAdress(e.target.value)}
             required
           />
         </div>
